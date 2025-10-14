@@ -106,11 +106,11 @@ export function AppSidebar() {
             <a href="/" onClick={handleLogoClick} className="flex items-center space-x-2 cursor-pointer">
               <img 
                 src="https://cdn.shopify.com/s/files/1/0636/9768/2537/files/AIVATE_2.png?v=1752900464" 
-                alt="AIVate CRM Logo" 
+                alt="Aivate Logo" 
                 className="w-12 h-12 object-contain"
               />
               <span className="font-cloud text-xl font-bold text-gray-900 dark:text-white">
-                AIVate CRM
+                Aivate
               </span>
             </a>
           </div>
