@@ -249,7 +249,7 @@ export function KanbanItemDetails() {
       priority: task.priority,
       assigned_to: task.assigned_to || "unassigned",
       related_contact_id: task.related_contact_id || "unassigned",
-      related_deal_id: task.related_deal_id || id || "unassigned",
+      related_deal_id: task.related_deal_id || "unassigned",
       related_kanban_item_id: task.related_kanban_item_id || id || "unassigned",
       due_date: task.due_date ? new Date(task.due_date) : undefined,
     });
@@ -265,7 +265,7 @@ export function KanbanItemDetails() {
         due_date: taskFormData.due_date ? format(taskFormData.due_date, "yyyy-MM-dd") : null,
         assigned_to: taskFormData.assigned_to === "unassigned" ? null : taskFormData.assigned_to,
         related_contact_id: taskFormData.related_contact_id === "unassigned" ? null : taskFormData.related_contact_id,
-        related_deal_id: taskFormData.related_deal_id === "unassigned" ? null : taskFormData.related_deal_id,
+        related_deal_id: taskFormData.related_deal_id === "unassigned" ? null : taskFormData.related_deal_id, // FIX: Ensure conversion to null
         related_kanban_item_id: id,
       };
       if (editingTask) {
@@ -849,7 +849,10 @@ export function KanbanItemDetails() {
                 <Label htmlFor="task-related_deal_id">Related Deal</Label>
                 <Select value={taskFormData.related_deal_id} onValueChange={(value) => setTaskFormData(prev => ({ ...prev, related_deal_id: value }))}>
                   <SelectTrigger><SelectValue placeholder="Select a deal" /></SelectTrigger>
-                  <SelectContent>{deals.map(d => <SelectItem key={d.id} value={d.id}>{d.title} (${d.value.toLocaleString()})</SelectItem>)}</SelectContent>
+                  <SelectContent>
+                    <SelectItem value="unassigned">None</SelectItem>
+                    {deals.map(d => <SelectItem key={d.id} value={d.id}>{d.title} (${d.value.toLocaleString()})</SelectItem>)}
+                  </SelectContent>
                 </Select>
               </div>
             </div>
